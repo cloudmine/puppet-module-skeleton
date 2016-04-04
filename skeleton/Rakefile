@@ -20,6 +20,7 @@ RuboCop::RakeTask.new
 
 exclude_paths = [
   "bundle/**/*",
+  "modules/**/*",
   "pkg/**/*",
   "vendor/**/*",
   "spec/**/*",

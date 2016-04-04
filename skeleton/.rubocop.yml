@@ -6,6 +6,10 @@ AllCops:
     - 'vendor/**/*'
     # Ignore code from test fixtures
     - 'spec/fixtures/**/*'
+    # Ignore external modules
+    - 'modules/**/*'
+    # Ignore spec files
+    - 'spec/classes/*.rb'
 
 Lint/ConditionPosition:
   Enabled: true
@@ -211,16 +215,13 @@ Style/SpaceInsideParens:
 Style/LeadingCommentSpace:
   Enabled: false
 
-Style/SingleSpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Enabled: false
 
 Style/SpaceAfterColon:
   Enabled: false
 
 Style/SpaceAfterComma:
-  Enabled: false
-
-Style/SpaceAfterControlKeyword:
   Enabled: false
 
 Style/SpaceAfterMethodName:
@@ -233,6 +234,9 @@ Style/SpaceAfterSemicolon:
   Enabled: false
 
 Style/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+
+Style/SpaceAroundKeyword:
   Enabled: false
 
 Style/SpaceAroundOperators:
@@ -323,7 +327,7 @@ Style/TrailingWhitespace:
 Style/StringLiterals:
   Enabled: false
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
   Enabled: false
 
 Style/GlobalVars:
