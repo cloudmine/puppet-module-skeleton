@@ -1,0 +1,10 @@
+# Post puppet run tests
+sleep 10
+if [ -f "/etc/init/<%= metadata.name %>.conf" ]; then
+  echo "<%= metadata.name %> upstart config:"
+  cat /etc/init/<%= metadata.name %>.conf
+  echo
+  echo "<%= metadata.name %> daemon status:"
+  service <%= metadata.name %> status
+  echo
+fi

@@ -1,0 +1,50 @@
+module_name = '<%= metadata.name %>'
+
+Vagrant.configure("2") do |config|
+  config.cache.auto_detect = true
+  config.r10k.puppet_dir = "."
+  config.r10k.puppetfile_path = "Puppetfile"
+  config.vm.provision :shell do |shell|
+    shell.inline = "ln -s /vagrant /vagrant/modules/#{module_name}"
+  end
+
+  config.vm.define :centos6 do |centos6|
+    centos6.vm.box = 'puppetlabs/centos-6.6-64-puppet'
+    centos6.vm.box_version = '1.0.1'
+    centos6.vm.hostname = "#{module_name}-centos-6"
+  end
+
+  config.vm.define :ubuntu1404 do |ubuntu1404|
+    ubuntu1404.vm.box = 'puppetlabs/ubuntu-14.04-64-puppet'
+    ubuntu1404.vm.box_version = '1.0.1'
+    ubuntu1404.vm.hostname = "#{module_name}-ubuntu-1404"
+  end
+
+  config.vm.network :private_network, ip: '192.168.50.10'
+
+  config.vm.provider "virtualbox" do |v|
+    v.customize [
+      "modifyvm", :id,
+      "--memory", 2048,
+      "--cpus", 1
+    ]
+  end
+
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx["memsize"] = "2048"
+    v.vmx["numvcpus"] = "1"
+  end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.hiera_config_path = "data/hiera.yaml"
+    puppet.manifests_path    = "manifests"
+    puppet.module_path       = "modules"
+    puppet.options           = "--verbose --debug"
+    puppet.working_directory = "/vagrant"
+    puppet.facter            = {
+      
+    }
+  end
+
+  config.vm.provision :shell, :path => "post-puppet.sh"
+end
