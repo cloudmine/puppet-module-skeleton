@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Sync with upstream
+
 ## 0.1.2
 
 * Pin listen version so Ruby 2.1.x still works
