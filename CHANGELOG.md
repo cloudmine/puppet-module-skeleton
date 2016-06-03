@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Add .rspec --tty to ensure pretty colors show in Jenkins
+
 ## 0.1.3
 
 * Sync with upstream
